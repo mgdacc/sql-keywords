@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF--8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palabras Clave Esenciales de SQL</title>
+    <style>
+        /* === ESTILOS GLOBALES Y DE ESCRITORIO === */
+        body {
+            font-family: Arial, sans-serif; background-color: #f0f0f0; margin: 0;
+            padding: 40px; display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; box-sizing: border-box; transition: padding 0.3s ease;
+        }
+
+        .slideshow-container { position: relative; width: 90%; max-width: 960px; }
+        
+        .slide {
+            display: none; background-color: #fff; border: 1px solid #ccc;
+            height: 540px; padding: 40px 60px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            flex-direction: column; justify-content: center; position: relative;
+            box-sizing: border-box;
+        }
+
+        .fade { animation-name: fade; animation-duration: 0.5s; }
+        @keyframes fade { from {opacity: .4} to {opacity: 1} }
+
+        .prev, .next {
+            cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%);
+            width: 50px; height: 50px; background-color: #cccccc; color: #333;
+            border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: flex; justify-content: center; align-items: center;
+            font-weight: bold; font-size: 24px; transition: all 0.3s ease;
+            user-select: none; z-index: 10;
+        }
+
+        .prev { left: -70px; }
+        .next { right: -70px; }
+        .prev:hover, .next:hover { background-color: #aaaaaa; }
+
+        .slide h1 { font-size: 3.5em; text-align: center; border-bottom: 4px solid #256eff; padding-bottom: 20px; color: #005A9C; }
+        .slide h2 { font-size: 2.8em; margin-top: 0; margin-bottom: 30px; text-align: center; color: #005A9C; }
+        .single-content { text-align: center; }
+        .single-content p { font-size: 1.5em; color: #444; }
+        .single-content pre { font-size: 1.2em; display: inline-block; text-align: left; max-width: 100%; }
+        pre { background-color: #2d3636; color: #fff; padding: 15px; border-radius: 5px; font-size: 1.1em; white-space: pre-wrap; }
+        .footer { position: absolute; bottom: 20px; right: 40px; font-size: 1em; color: #888; }
+
+        /* === MEDIA QUERIES === */
+        @media screen and (max-width: 768px) {
+            body { padding: 15px; }
+            .slideshow-container { width: 100%; padding-bottom: 75px; }
+            .slide { height: auto; min-height: 75vh; padding: 20px 25px; }
+            .prev, .next { top: auto; bottom: 15px; width: 45px; height: 45px; }
+            .prev { left: 50%; transform: translateX(-110%); }
+            .next { left: 50%; transform: translateX(10%); right: auto; }
+            .slide h1 { font-size: 2.2em; }
+            .slide h2 { font-size: 1.8em; }
+            .single-content p { font-size: 1.1em; }
+            .single-content pre { font-size: 1em; }
+            .footer { font-size: 0.8em; right: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slideshow-container">
+        
+        <!-- =============================================================== -->
+        <!-- INICIO DEL CONTENIDO DE LAS DIAPOSITIVAS -->
+        <!-- =============================================================== -->
+
+        <div class="slide fade">
+            <h1>Cheat Sheet de SQL</h1>
+            <h2 style="color:#333; border:none;">Keywords</h2>
+            <div class="footer">1 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>¿Qué es una "Keyword"?</h2>
+            <div class="single-content">
+                <p>Son palabras reservadas que SQL entiende como órdenes o instrucciones. Le dicen a la base de datos QUÉ hacer (SELECT, UPDATE) y DÓNDE hacerlo (FROM, WHERE).</p>
+            </div>
+            <div class="footer">2 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>DML: Manipulación de Datos</h2>
+            <div class="single-content">
+                <p>El grupo de comandos más común, usado para interactuar con los datos existentes. Son las operaciones del día a día.</p>
+                <p style="font-size: 1.2em; color: #005A9C;"><b>SELECT, INSERT, UPDATE, DELETE</b></p>
+            </div>
+            <div class="footer">3 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>SELECT y FROM</h2>
+            <div class="single-content">
+                <p><b>SELECT</b> especifica las columnas que quieres ver y <b>FROM</b> la tabla de donde las obtendrás. Es la base de toda consulta.</p>
+                <pre><code>-- Selecciona el nombre y email de todos los usuarios
+SELECT Nombre, Email FROM Usuarios;</code></pre>
+            </div>
+            <div class="footer">4 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>WHERE: Filtrado de Datos</h2>
+            <div class="single-content">
+                <p>Permite establecer condiciones para filtrar los registros y obtener solo los que cumplen ciertos criterios.</p>
+                <pre><code>-- Selecciona los productos que cuestan más de 50
+SELECT * FROM Productos WHERE Precio > 50;</code></pre>
+            </div>
+            <div class="footer">5 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>Operadores Lógicos</h2>
+            <div class="single-content">
+                <p>Se usan con <b>WHERE</b> para combinar múltiples condiciones: <b>AND</b> (ambas deben ser ciertas), <b>OR</b> (al menos una debe ser cierta).</p>
+                <pre><code>-- Productos caros Y de la categoría 'Electrónica'
+SELECT * FROM Productos 
+WHERE Precio > 1000 AND Categoria = 'Electrónica';</code></pre>
+            </div>
+            <div class="footer">6 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>Otros Operadores de Filtrado</h2>
+            <div class="single-content">
+                <p><b>IN</b> (está en una lista), <b>BETWEEN</b> (está en un rango), <b>LIKE</b> (coincide con un patrón de texto).</p>
+                <pre><code>-- Pedidos realizados en Enero o Febrero
+SELECT * FROM Pedidos 
+WHERE MONTH(Fecha) IN (1, 2);</code></pre>
+            </div>
+            <div class="footer">7 / 22</div>
+        </div>
+        
+        <div class="slide fade">
+            <h2>ORDER BY: Ordenar Resultados</h2>
+            <div class="single-content">
+                <p>Clasifica los resultados de una consulta en orden ascendente (<b>ASC</b>, por defecto) o descendente (<b>DESC</b>).</p>
+                <pre><code>-- Empleados ordenados por salario, de mayor a menor
+SELECT Nombre, Salario FROM Empleados
+ORDER BY Salario DESC;</code></pre>
+            </div>
+            <div class="footer">8 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>INSERT INTO: Añadir Registros</h2>
+            <div class="single-content">
+                <p>Agrega una nueva fila (o registro) a una tabla existente.</p>
+                <pre><code>-- Agrega un nuevo departamento
+INSERT INTO Departamentos (ID, Nombre)
+VALUES (5, 'Marketing');</code></pre>
+            </div>
+            <div class="footer">9 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>UPDATE y SET: Modificar</h2>
+            <div class="single-content">
+                <p><b>UPDATE</b> especifica la tabla y <b>SET</b> las columnas a cambiar. Se usa con <b>WHERE</b> para no modificar toda la tabla.</p>
+                <pre><code>-- Actualiza el stock del producto con ID 123
+UPDATE Productos
+SET Stock = 50
+WHERE ProductoID = 123;</code></pre>
+            </div>
+            <div class="footer">10 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>DELETE: Eliminar Registros</h2>
+            <div class="single-content">
+                <p>Borra filas de una tabla. ¡Es crucial usar <b>WHERE</b> para especificar qué filas eliminar!</p>
+                <pre><code>-- Elimina las órdenes canceladas
+DELETE FROM Pedidos
+WHERE Estado = 'Cancelado';</code></pre>
+            </div>
+            <div class="footer">11 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>DDL: Definición de Datos</h2>
+            <div class="single-content">
+                <p>Este grupo de comandos no trabaja con los datos, sino con la estructura de la base de datos: las tablas, columnas, etc.</p>
+                <p style="font-size: 1.2em; color: #005A9C;"><b>CREATE, ALTER, DROP</b></p>
+            </div>
+            <div class="footer">12 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>CREATE TABLE: Crear Estructuras</h2>
+            <div class="single-content">
+                <p>Define y crea una nueva tabla, especificando sus columnas y los tipos de datos que almacenarán (texto, número, fecha, etc.).</p>
+                <pre><code>CREATE TABLE Clientes (
+    ClienteID INT PRIMARY KEY,
+    Nombre VARCHAR(100),
+    FechaRegistro DATE
+);</code></pre>
+            </div>
+            <div class="footer">13 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>ALTER TABLE: Modificar Tablas</h2>
+            <div class="single-content">
+                <p>Permite modificar una tabla existente, por ejemplo, para añadir, eliminar o cambiar una columna.</p>
+                <pre><code>-- Añade una columna para el teléfono del cliente
+ALTER TABLE Clientes
+ADD Telefono VARCHAR(20);</code></pre>
+            </div>
+            <div class="footer">14 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>DROP TABLE: Eliminar Tablas</h2>
+            <div class="single-content">
+                <p>Elimina una tabla completa, incluyendo su estructura y todos sus datos. Es una acción irreversible.</p>
+                <pre><code>-- Elimina una tabla que ya no se necesita
+DROP TABLE Empleados_Antiguos;</code></pre>
+            </div>
+            <div class="footer">15 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>Funciones de Agregación</h2>
+            <div class="single-content">
+                <p>Realizan un cálculo sobre un conjunto de valores y devuelven un único valor. Ej: <b>COUNT</b>, <b>SUM</b>, <b>AVG</b>, <b>MAX</b>, <b>MIN</b>.</p>
+                <pre><code>-- Calcula el precio promedio de todos los productos
+SELECT AVG(Precio) FROM Productos;</code></pre>
+            </div>
+            <div class="footer">16 / 22</div>
+        </div>
+        
+        <div class="slide fade">
+            <h2>GROUP BY: Agrupar Datos</h2>
+            <div class="single-content">
+                <p>Agrupa filas que tienen los mismos valores en columnas específicas, para poder ejecutar funciones de agregación en cada grupo.</p>
+                <pre><code>-- Cuenta cuántos productos hay en cada categoría
+SELECT Categoria, COUNT(*) FROM Productos
+GROUP BY Categoria;</code></pre>
+            </div>
+            <div class="footer">17 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>HAVING: Filtrar Grupos</h2>
+            <div class="single-content">
+                <p>Es como un <b>WHERE</b>, pero para los resultados de un <b>GROUP BY</b>. Filtra grupos, no filas individuales.</p>
+                <pre><code>-- Muestra categorías con más de 10 productos
+SELECT Categoria, COUNT(*) FROM Productos
+GROUP BY Categoria
+HAVING COUNT(*) > 10;</code></pre>
+            </div>
+            <div class="footer">18 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>JOIN: Unir Tablas</h2>
+            <div class="single-content">
+                <p>Permite combinar filas de dos o más tablas basándose en una columna relacionada entre ellas (como un ID).</p>
+                <pre><code>-- Une Clientes con Pedidos para ver quién pidió qué
+SELECT Clientes.Nombre, Pedidos.Producto
+FROM Clientes
+JOIN Pedidos ON Clientes.ClienteID = Pedidos.ClienteID;</code></pre>
+            </div>
+            <div class="footer">19 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>Tipos de JOIN</h2>
+            <div class="single-content">
+                <p><b>INNER JOIN</b>: Solo filas que coinciden en ambas tablas. <br><b>LEFT JOIN</b>: Todas las filas de la tabla izquierda y las coincidencias de la derecha.<br><b>RIGHT JOIN</b>: Lo opuesto a LEFT JOIN.</p>
+                <pre><code>-- Muestra todos los clientes, tengan o no pedidos
+SELECT C.Nombre, P.Producto
+FROM Clientes AS C
+LEFT JOIN Pedidos AS P ON C.ClienteID = P.ClienteID;</code></pre>
+            </div>
+            <div class="footer">20 / 22</div>
+        </div>
+
+        <div class="slide fade">
+            <h2>AS: Alias</h2>
+            <div class="single-content">
+                <p>Permite renombrar temporalmente una columna o una tabla en una consulta para hacerla más corta o legible.</p>
+                <pre><code>-- Renombra la columna y la tabla para más claridad
+SELECT Nombre AS NombreCompleto
+FROM Empleados AS E;</code></pre>
+            </div>
+            <div class="footer">21 / 22</div>
+        </div>
+        
+        <div class="slide fade">
+            <h2>¡Felicidades!</h2>
+            <div class="single-content">
+                <p>Has recorrido las palabras clave más importantes de SQL. Desde consultar y modificar datos hasta definir la propia estructura de la base de datos.</p>
+                <p>¡Dominar estos comandos es la clave para ser un experto en SQL!</p>
+            </div>
+            <div class="footer">22 / 22</div>
+        </div>
+
+        <!-- =============================================================== -->
+        <!-- FIN DEL CONTENIDO DE LAS DIAPOSITIVAS -->
+        <!-- =============================================================== -->
+
+        <!-- Botones de navegación (No es necesario editar) -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <!-- Lógica de JavaScript (No es necesario editar) -->
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            if (n > slides.length) { slideIndex = 1 } 
+            if (n < 1) { slideIndex = slides.length }
+            
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            
+            slides[slideIndex - 1].style.display = "flex";
+        }
+    </script>
+
+</body>
+</html>
